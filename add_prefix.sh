@@ -1,10 +1,12 @@
 #!/bin/bash
+# This script adds a prefix to files of a certain type
 
 prefix=$1
 extension=$2
 path=$3
 requiredParamsN=3
 actualParamsN=$#
+newName
 
 error() {
   local text=$1
@@ -29,7 +31,7 @@ checkPath() {
   fi
 }
 
-# Generation of files
+# Add prefix
 addPrefix() {
   local prefix=$1
   local extension=$2
@@ -38,7 +40,7 @@ addPrefix() {
     local oldName=$f
     local regex=*.$extension
     if [[ $oldName == $regex ]]; then
-      newName=$prefix$oldName
+      local newName=$prefix$oldName
       $(mv $path/$oldName $path/$newName)
       echo "Added prefix: $newName"
     fi
@@ -50,5 +52,5 @@ addPrefix() {
 # Cheking errors
 checkParam $requiredParamsN $actualParamsN
 checkPath $path
-
+# Add prefix
 addPrefix $prefix $extension $path

@@ -1,4 +1,6 @@
 #!/bin/bash
+# This script generates files up to the indicated number
+
 
 name=$1
 extension=$2
